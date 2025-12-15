@@ -1,0 +1,14 @@
+1, dockerファイル単体で立ち上げる
+2, composeで立ち上げる
+3, docker networkの記載をする
+4, volumeの設定をする
+
+○ NGINX
+・.confを書く
+・TLSv1.2 or TLSv1.3の設定
+
+
+# • A Docker container that contains WordPress + php-fpm (it must be installed and
+# configured) only, without nginx.
+# • A Docker container that contains MariaDB only, without nginx.
+
