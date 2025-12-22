@@ -21,12 +21,17 @@ VOLUME ["/var/lib/mysql"]
 # 	chown -R mysql:mysql /run/mysqld /var/lib/mysql
 
 # COPY conf/99-inception.conf /etc/mysql/mariadb.conf.d/99-inception.conf
-# COPY tools/entrypoint.sh /entrypoint.sh
+# usr/local/bin/entrypoint.shではない？
+# COPY entrypoint.sh /entrypoint.sh
 # RUN chmod +x /entrypoint.sh
 
 # EXPOSE 3306
 
 # ENTRYPOINT ["/entrypoint.sh"]
 
+# ログイン
 # docker build -t mariadb .
 # docker run --name mariadb -e MYSQL_ROOT_PASSWORD=password -dp 3307:3306 mariadb
+# docker exec -it mariadb /bin/bash
+# mariadb -p
+# password
