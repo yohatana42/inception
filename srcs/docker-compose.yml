@@ -1,16 +1,28 @@
 services:
-  # mariadb:
-  #   container_name: mariadb
-  #   build: ./mariadb
-  #   image: mariadb
-    # context: ./mariadb
-    # dockerfile: Dockerfile
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./mariadb
+      dockerfile: Dockerfile
+    image: mariadb
+    secrets:
+      - db_root_password
+      - db_password
 
   # wordpress:
   #   container_name: wordpress
+      # depends_on:
+      # - mariadb
 
   nginx:
     container_name: nginx
     build: ./nginx
     image: nginx
+    # depends_on:
+    #   - wordpress
 
+secrets:
+  db_root_password:
+    file: ../secrets/db_root_password.txt
+  db_password:
+    file: ../secrets/db_password.txt

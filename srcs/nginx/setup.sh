@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "== set up nginx =="
+echo "== setup nginx =="
 mkdir -p /etc/nginx/ssl
 
 echo "create public key for nginx"
