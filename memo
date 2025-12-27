@@ -11,4 +11,11 @@
 # • A Docker container that contains WordPress + php-fpm (it must be installed and
 # configured) only, without nginx.
 # • A Docker container that contains MariaDB only, without nginx.
+VMでの動作は最後で良い
 
+
+ubuntu設定
+yohatana
+パス：nusu
+
+ワードプレスの公開鍵って自分で発行するの？
