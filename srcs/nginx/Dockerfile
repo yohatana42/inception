@@ -1,17 +1,21 @@
-FROM debian:bookworm
+FROM	debian:bookworm
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV	DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
+RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 	nginx \
 	openssl && \
 	service nginx start
 
-# COPY 設定ファイルとか移動するらしい
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY index.html /var/www/html/index.nginx-debian.html
+COPY	nginx.conf /etc/nginx/nginx.conf
+# COPY	index.html /var/www/html/index.nginx-debian.html
+COPY	setup.sh /setup.sh
+RUN		chmod +x /setup.sh
 
+EXPOSE 443
+
+CMD ["/setup.sh"]
 
 
 # 起動してローカルホストで見てみる

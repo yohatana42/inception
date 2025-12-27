@@ -1,8 +1,8 @@
 services:
-  mariadb:
-    container_name: mariadb
-    build: ./mariadb
-    image: mariadb
+  # mariadb:
+  #   container_name: mariadb
+  #   build: ./mariadb
+  #   image: mariadb
     # context: ./mariadb
     # dockerfile: Dockerfile
 

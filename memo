@@ -19,3 +19,8 @@ yohatana
 パス：nusu
 
 ワードプレスの公開鍵って自分で発行するの？
+→します。自動で公開鍵を取得するようにする必要がある
+
+dockerfileのcmdとentrypointは何が違うのか？
+→わっかんね　なんか自由度が違う？らしい
+https://qiita.com/uehaj/items/e6dd013e28593c26372d
