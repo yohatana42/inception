@@ -37,22 +37,21 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 	echo ""
 	echo "=== create database ==="
 	mysql <<-EOSQL
-		ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-
-		CREATE DATBASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
+		CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
 
 		-- create user and password for wordpress
-		CREATE DATBASE IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
+		CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
 		GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
 
 		-- crete user and password for localhost
 		CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';
 		GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'localhost';
 
+		ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 		FLUSH PRIVILEGES;
-	EOSQL
+EOSQL
 
-	mysqladmin shutdown -p"${MYSQL_ROOT_PASSWORD}" 2>/dev/null || kill -s TERM "$pid"
+	mysqladmin shutdown -u root -p"${MYSQL_ROOT_PASSWORD}" 2>/dev/null || kill -s TERM "$pid"
 	wait "$pid" 2>/dev/null || true
 	echo "= setup complete ="
 

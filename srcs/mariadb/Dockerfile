@@ -13,7 +13,7 @@ RUN	apt-get update && \
 RUN	mkdir -p /run/mysqld /var/lib/mysql && \
 	chown -R mysql:mysql /run/mysqld /var/lib/mysql
 
-COPY	99-inception.conf /etc/mysql/mariadb.conf.d/99-inception.conf
+COPY	99-inception.cnf /etc/mysql/mariadb.conf.d/99-inception.cnf
 COPY	entrypoint.sh /entrypoint.sh
 RUN		chmod +x /entrypoint.sh
 
