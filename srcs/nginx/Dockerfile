@@ -6,7 +6,8 @@ RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 	nginx \
 	openssl && \
-	service nginx start
+	rm -rf /var/lib/apt/lists/*
+	# service nginx start
 
 COPY	nginx.conf /etc/nginx/nginx.conf
 # COPY	index.html /var/www/html/index.nginx-debian.html
