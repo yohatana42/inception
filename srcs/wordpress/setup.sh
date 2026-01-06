@@ -8,7 +8,7 @@ MYSQL_PASSWORD=$(cat /run/secrets/db_password)
 WP_ADMIN_PASSWORD=$(cat /run/secrets/wp_admin_password)
 WP_USER_PASSWORD=$(cat /run/secrets/wp_editor_password)
 
-until mysqladmin ping -h mariadb -u ${MYSQL_USER} -p ${MYSQL_PASSWORD} --silent 2>/dev/null; do
+until mysqladmin ping -h mariadb -u ${MYSQL_USER} -p${MYSQL_PASSWORD} --silent 2>/dev/null; do
 	echo "waiting for mariaDB..."
 	sleep 3
 done
@@ -50,7 +50,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 		--title="iniception wordpress" \
 		--admin_user=${WP_ADMIN_USER} \
 		--admin_password=${WP_ADMIN_PASSWORD} \
-		--admin_email=${WP_ADMIN_MAIL} \
+		--admin_email=${WP_ADMIN_EMAIL} \
 		--allow-root
 
 	echo "create regular user..."
