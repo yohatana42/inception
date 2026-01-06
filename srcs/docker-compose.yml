@@ -5,21 +5,39 @@ services:
       context: ./mariadb
       dockerfile: Dockerfile
     image: mariadb
+    env_file:
+      - .env
     secrets:
       - db_root_password
       - db_password
 
-  # wordpress:
-  #   container_name: wordpress
-      # depends_on:
-      # - mariadb
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    image: wordpress
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    secrets:
+      - db_password
+      - wp_admin_password
+      - wp_editor_password
+
 
   nginx:
     container_name: nginx
-    build: ./nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     image: nginx
-    # depends_on:
-    #   - wordpress
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
 
 secrets:
   db_root_password:
