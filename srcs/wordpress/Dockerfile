@@ -18,12 +18,12 @@ RUN	apt-get update && \
 		mariadb-client && \
 	rm -rf /var/lib/apt/lists/*
 
-COPY	tools/setup.sh /setup.sh
+COPY	setup.sh /setup.sh
 RUN chmod +x /setup.sh
 
 RUN sed -i 's|listen = /run/php/php8.2-fpm.sock|listen = 9000|g' /etc/php/8.2/fpm/pool.d/www.conf
 
-WORKDIR /var/wwww/html
+WORKDIR /var/www/html
 
 EXPOSE 9000
 

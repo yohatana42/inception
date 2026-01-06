@@ -25,7 +25,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	fi
 
 	chmod +x wp-cli.phar
-	mv wp-cli.ohar /usr/local/bin/wp
+	mv wp-cli.phar /usr/local/bin/wp
 
 	if ! command -v wp &> /dev/null; then
 		echo "Error: wp commnad not found"

@@ -15,3 +15,11 @@ secretsディレクトリとその中身は自分で作成しよう！
 
 #### テストどうやるんだこれ
 https://yohatana.42.fr にアクセスしよう
+
+#### なんか画面が出ないんだけど！
+`ping yohatana.42.fr`
+"cannot resolve" や 全く別のIPが表示される場合: 以下の手順で設定が必要
+以下のファイルに
+`nano /etc/hosts`
+以下を追記
+`127.0.0.1  yohatana.42.fr`

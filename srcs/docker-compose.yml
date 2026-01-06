@@ -8,6 +8,8 @@ services:
     restart: always
     networks:
       - inception_network
+    volumes:
+      - mariadb_data:/var/lib/mysql
     env_file:
       - .env
     secrets:
@@ -17,12 +19,14 @@ services:
   wordpress:
     container_name: wordpress
     build:
-      context: ./requirements/wordpress
+      context: ./wordpress
       dockerfile: Dockerfile
     image: wordpress
     restart: always
     networks:
       - inception_network
+    volumes:
+      - wordpress_data:/var/www/html
     env_file:
       - .env
     depends_on:
@@ -40,12 +44,29 @@ services:
       dockerfile: Dockerfile
     image: nginx
     restart: always
+    volumes:
+      - wordpress_data:/var/www/html
     networks:
       - inception_network
     ports:
       - "443:443"
     depends_on:
       - wordpress
+
+volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yohatana/data/mariadb
+
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yohatana/data/wordpress
 
 networks:
   inception_network:
